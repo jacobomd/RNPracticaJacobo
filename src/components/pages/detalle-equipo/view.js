@@ -5,11 +5,10 @@ import styles from './styles';
 class DetalleEquipo extends React.Component {
 
     constructor(props) {
-        super()
+        super(props)
     };
 
     render () {
-       
         return (
             <SafeAreaView style={styles.container} >
                 <Text>
