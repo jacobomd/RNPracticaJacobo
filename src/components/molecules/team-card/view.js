@@ -8,7 +8,6 @@ class TeamCard extends React.Component {
     render() {
         const {team, onPress} = this.props;
         const strTeamBadge = _.get(team, 'strTeamBadge');
-        console.log('strTeamBadge : ', strTeamBadge);
         return (
             <TouchableOpacity
              style={styles.container}

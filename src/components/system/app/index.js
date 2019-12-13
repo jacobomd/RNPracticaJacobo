@@ -2,6 +2,8 @@ import React from 'react';
 import {YellowBox} from 'react-native';
 import {Router, Scene} from 'react-native-router-flux';
 import {ListEquipos, DetalleEquipo} from '../../pages'
+import {Provider} from 'react-redux';
+import store from '../../../config/redux';
 
 class App extends React.Component {
 
@@ -12,12 +14,14 @@ class App extends React.Component {
 
     render () {
         return (
-            <Router>
-                <Scene key="root">
-                    <Scene key="ListEquipos" component={ListEquipos} title={'Listado Equipos'}/>
-                    <Scene key="DetalleEquipo" component={DetalleEquipo} title={'Detalle'}/>
-                </Scene>
-            </Router>
+            <Provider store = {store}>
+                <Router>
+                    <Scene key="root">
+                        <Scene key="ListEquipos" component={ListEquipos} title={'Listado Equipos'}/>
+                        <Scene key="DetalleEquipo" component={DetalleEquipo} title={'Detalle'}/>
+                    </Scene>
+                </Router>
+            </Provider>
         );
     }
 }

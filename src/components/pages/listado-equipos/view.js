@@ -1,39 +1,19 @@
 import React from 'react';
-import {SafeAreaView, View, Text, FlatList, Alert} from 'react-native';
+import {SafeAreaView, FlatList, TouchableHighlight, View, Text, RefreshControl} from 'react-native';
 import styles from './styles';
-import {Actions} from 'react-native-router-flux';
 import {TeamCard} from '../../molecules';
-import * as api from '../../../api';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 class ListEquipos extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            teams: [],
-        };
-        this._loadEquiposList();
-    };
-
-    _loadEquiposList = async () => {
-
-        try {
-        const getListEquiposRes = await api.getListEquipos();
-        const teams = _.get(getListEquiposRes, 'data.teams', []);
-        this.setState({teams: teams});
-        } catch (e) {
-            Alert.alert(
-                'Atención',
-                'Tu lista de equipos no ha podido cargarse, revise su conexión.'
-            )
-        }
-    };
+        props.fetchTeamsList();
+    }
 
     _onTeamTapped = team => {
-        console.log(`EQUIPO ${team.strTeam} PULSADO`);
-        const nombre = team.strTeam;
-        Actions.push('DetalleEquipo');
+        this.props.updateSelectedTeam(team);
     };
 
     _renderItem = ({item}) => {
@@ -41,17 +21,41 @@ class ListEquipos extends React.Component {
     };
 
     render () {
-        const {teams} = this.state;
+        const {teamsList, teamsIsFetching, fetchTeamsList} = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                   data={teams}
+                    refreshControl={
+                    <RefreshControl
+                        refreshing={teamsIsFetching}
+                        onRefresh={fetchTeamsList}
+                        colors={['#FFF']}
+                        tintColor={'white'}
+                    />
+                    }
+                   data={teamsList}
                    renderItem={this._renderItem}
-                   keyExtractor={(v, i) => `cell-${v.id}`} 
+                   keyExtractor={(item, index) => index.toString()}
+                   //keyExtractor={(v, i) => `cell-${v.id}`} 
+                   numColumns={2}
                 />
+                <View style={styles.container}>
+                    <TouchableHighlight style={styles.addButton}
+                        underlayColor='#ff7043' onPress={()=>{console.log('pressed')}}>
+                        <Text style={{fontSize: 50, color: 'white'}}>+</Text>
+                    </TouchableHighlight>
+                </View>
             </SafeAreaView>
         );
     };
 }
+
+ListEquipos.propTypes = {
+    teamsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    teamsIsFetching: PropTypes.bool,
+    fetchTeamsList: PropTypes.func.isRequired,
+    updateSelectedTeams: PropTypes.func,
+  };
+  
 
 export default ListEquipos;

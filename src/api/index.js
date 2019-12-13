@@ -10,3 +10,8 @@ export const getListEquipos = () => {
     const url = '/lookup_all_teams.php?id=4335';
     return instance.get(url);
 };
+
+export const getDetailTeam = (teamId) => {
+    const url = `/lookupteam.php?id=${teamId}`;
+    return instance.get(url);
+}

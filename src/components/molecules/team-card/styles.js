@@ -5,10 +5,9 @@ const styles = StyleSheet.create({
         
     },
     image: {
-        flex: 1,
-        alignContent: "center",
-        width: 400,
-        height: 400,
+        width: 200,
+        height: 200,
+        resizeMode: 'cover'
     },
 });
 
