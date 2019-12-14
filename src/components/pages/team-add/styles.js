@@ -4,12 +4,12 @@ import colors from '../../../assets/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
+    
   },
   imageContainer: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
-    borderColor: colors.white,
+    borderColor: colors.black,
     overflow: 'hidden',
     margin: 20,
   },
@@ -21,12 +21,12 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   imageLabel: {
-    color: colors.white,
+    color: colors.black,
     fontWeight: '600',
   },
 
   inputLabel: {
-    color: colors.white,
+    color: colors.black,
     fontSize: 14,
     textTransform: 'uppercase',
     marginBottom: 10,
@@ -34,12 +34,12 @@ export default StyleSheet.create({
  
   inputText: {
     marginVertical: 10,
-    borderWidth: 1,
-    borderColor: colors.white,
+    borderWidth: 2,
+    borderColor: colors.black,
     borderRadius: 4,
     paddingVertical: 10,
     paddingHorizontal: 10,
-    color: colors.white,
+    color: colors.black,
   },
   inputError: {
     color: 'red',

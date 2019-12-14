@@ -4,14 +4,13 @@ import colors from '../../../assets/colors';
 const styles = StyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: 'blue',
     },
     addButton: {
         backgroundColor: '#ff5722',
         borderColor: '#ff5722',
         borderWidth: 1,
-        height: 100,
-        width: 100,
+        height: 80,
+        width: 80,
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -26,6 +25,10 @@ const styles = StyleSheet.create ({
           width: 0
         }
       },
+      backgroundImage: {
+        width: '100%',
+        height: '100%',
+      }
 });
 
 export default styles;

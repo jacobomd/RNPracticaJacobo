@@ -52,47 +52,52 @@ class TeamsAdd extends React.Component {
     const {image, name, year, stadium} = this.state;
     return (
       <SafeAreaView style={styles.container}>
-       <TouchableOpacity onPress={this._onImageTapped} style={styles.imageContainer}>
-         <ImageBackground
-          style= {styles.image}
-           source={image ? {uri: image.uri} : null}
-           >
-         <Text style={styles.imageLabel}>SELECCIONAR FOTO</Text>
-         </ImageBackground>
-       </TouchableOpacity>
-       
-      <View style={{marginVertical: 20, marginHorizontal: 20, flex: 1}}>
-         <Text style={styles.imageLabel}>
-           Nombre equipo
-         </Text>
-        <TextInput
-          style={styles.inputText}
-          onChangeText={(name) => {this.setState({name})}}
-          value={this.state.name}
-        />
-          <Text style={styles.imageLabel}>
-           Año creacion
-         </Text>
-          <TextInput
-          style={styles.inputText}
-          onChangeText={(year) => {this.setState({year})}}
-          value={this.state.year}
-        />   
-         <Text style={styles.imageLabel}>
-           Nombre estadio
-         </Text>
-          <TextInput
-          style={styles.inputText}
-          onChangeText={(stadium) => {this.setState({stadium})}}
-          value={this.state.stadium}
-        /> 
-        <View style={styles.buttonCrear}>
-        <Button 
-          title = 'Crear'
-          onPress={this._onSubmit}
-        />
-        </View>
-      </View>
+          <ImageBackground 
+                        source={require('../../../assets/images/portadaLiga.jpg')}
+                        style={{width: '100%', heigth: '100%', flex: 1}}
+                        opacity = {0.5}>
+            <TouchableOpacity onPress={this._onImageTapped} style={styles.imageContainer}>
+              <ImageBackground
+                style= {styles.image}
+                source={image ? {uri: image.uri} : null}
+                >
+              <Text style={styles.imageLabel}>SELECCIONAR FOTO</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+        
+            <View style={{marginVertical: 20, marginHorizontal: 20}}>
+              <Text style={styles.imageLabel}>
+                Nombre equipo
+              </Text>
+              <TextInput
+                style={styles.inputText}
+                onChangeText={(name) => {this.setState({name})}}
+                value={this.state.name}
+              />
+                <Text style={styles.imageLabel}>
+                Año creacion
+              </Text>
+                <TextInput
+                style={styles.inputText}
+                onChangeText={(year) => {this.setState({year})}}
+                value={this.state.year}
+              />   
+              <Text style={styles.imageLabel}>
+                Nombre estadio
+              </Text>
+                <TextInput
+                style={styles.inputText}
+                onChangeText={(stadium) => {this.setState({stadium})}}
+                value={this.state.stadium}
+              /> 
+              <View style={styles.buttonCrear}>
+              <Button 
+                title = 'Crear'
+                onPress={this._onSubmit}
+              />
+              </View>
+            </View>
+            </ImageBackground>
       </SafeAreaView>
     );
   }

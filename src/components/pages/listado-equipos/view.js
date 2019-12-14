@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, FlatList, TouchableHighlight, View, Text, RefreshControl} from 'react-native';
+import {SafeAreaView, FlatList, TouchableHighlight, View, Text, RefreshControl, ImageBackground} from 'react-native';
 import styles from './styles';
 import {TeamCard} from '../../molecules';
 import _ from 'lodash';
@@ -29,28 +29,34 @@ class ListEquipos extends React.Component {
         const {teamsList, teamsTotal, teamsIsFetching, fetchTeamsList} = this.props;
         return (
             <SafeAreaView style={styles.container}>
-                <FlatList
-                    refreshControl={
-                    <RefreshControl
-                        refreshing={teamsIsFetching}
-                        onRefresh={fetchTeamsList}
-                        colors={['#FFF']}
-                        tintColor={'white'}
+                <ImageBackground 
+                        source={require('../../../assets/images/portadaLiga.jpg')}
+                        style={{width: '100%', heigth: '100%'}}
+                        opacity = {0.7}>
+                        
+                    <FlatList
+                        refreshControl={
+                        <RefreshControl
+                            refreshing={teamsIsFetching}
+                            onRefresh={fetchTeamsList}
+                            colors={['#FFF']}
+                            tintColor={'white'}
+                        />
+                        }
+                    data={teamsList}
+                    renderItem={this._renderItem}
+                    keyExtractor={(item, index) => index.toString()}
+                    //keyExtractor={(v, i) => `cell-${v.id}`} 
+                    numColumns={2}
                     />
-                    }
-                   data={teamsList}
-                   renderItem={this._renderItem}
-                   keyExtractor={(item, index) => index.toString()}
-                   //keyExtractor={(v, i) => `cell-${v.id}`} 
-                   numColumns={2}
-                />
-                <View style={styles.container}>
-                    <TouchableHighlight style={styles.addButton}
-                        underlayColor='#ff7043'
-                         onPress= {() => {  this._onPress() }}>
-                        <Text style={{fontSize: 50, color: 'white'}}>+</Text>
-                    </TouchableHighlight>
-                </View>
+                    <View style={styles.container}>
+                        <TouchableHighlight style={styles.addButton}
+                            underlayColor='#B0C4DE'
+                            onPress= {() => {  this._onPress() }}>
+                            <Text style={{fontSize: 50, color: 'white'}}>+</Text>
+                        </TouchableHighlight>
+                    </View>
+                </ImageBackground>
             </SafeAreaView>
         );
     };
