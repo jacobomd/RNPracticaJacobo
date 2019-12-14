@@ -15,3 +15,11 @@ export const getDetailTeam = (teamId) => {
     const url = `/lookupteam.php?id=${teamId}`;
     return instance.get(url);
 }
+
+export const postTeam= data => {
+    // TODO : No implementada en la Api esta opcion
+    //const url = `/lookupteam....`;
+    //return instance.post(url, data);
+    return;
+  };
+  

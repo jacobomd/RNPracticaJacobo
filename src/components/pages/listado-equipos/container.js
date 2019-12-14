@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 const mapStateToProps = state => {
   return {
     teamsList: state.teams.list,
+    teamsTotal: state.teams.total,
     teamsIsFetching: state.teams.isFetching,
   };
 };

@@ -4,6 +4,7 @@ import styles from './styles';
 import {TeamCard} from '../../molecules';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import { Actions } from 'react-native-router-flux';
 
 class ListEquipos extends React.Component {
 
@@ -16,12 +17,16 @@ class ListEquipos extends React.Component {
         this.props.updateSelectedTeam(team);
     };
 
+    _onPress = () => {
+       Actions.push('TeamsAdd', {title: 'Crear equipo'});
+    };
+
     _renderItem = ({item}) => {
         return <TeamCard team={item} onPress={this._onTeamTapped}/>
     };
 
     render () {
-        const {teamsList, teamsIsFetching, fetchTeamsList} = this.props;
+        const {teamsList, teamsTotal, teamsIsFetching, fetchTeamsList} = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
@@ -41,7 +46,8 @@ class ListEquipos extends React.Component {
                 />
                 <View style={styles.container}>
                     <TouchableHighlight style={styles.addButton}
-                        underlayColor='#ff7043' onPress={()=>{console.log('pressed')}}>
+                        underlayColor='#ff7043'
+                         onPress= {() => {  this._onPress() }}>
                         <Text style={{fontSize: 50, color: 'white'}}>+</Text>
                     </TouchableHighlight>
                 </View>
@@ -52,6 +58,7 @@ class ListEquipos extends React.Component {
 
 ListEquipos.propTypes = {
     teamsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    teamsTotal: PropTypes.any,
     teamsIsFetching: PropTypes.bool,
     fetchTeamsList: PropTypes.func.isRequired,
     updateSelectedTeams: PropTypes.func,
