@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Button,
   Image,
+  Alert,
   View,
 } from 'react-native';
 import styles from './styles';
@@ -28,16 +29,24 @@ class TeamsAdd extends React.Component {
   _onSubmit = () => {
     const {isFetching} = this.props;
     const {name, year, stadium, image} = this.state;
-    const data = {
-      strTeam: name,
-      intFormedYear: year,
-      strStadium: stadium,
-      strTeamBadge: image,
-      strTeamBadge: _.has(this.state, 'image.data')
-      ? 'data:image/jpeg;base64,' + image.data
-      : null,
-    };
-    this.props.postTeam(data);
+
+    if(this.state.name != '' && this.state.year != '' && this.state.stadium != '' && image != null) {
+      const data = {
+        strTeam: name,
+        intFormedYear: year,
+        strStadium: stadium,
+        strTeamBadge: image,
+        strTeamBadge: _.has(this.state, 'image.data')
+        ? 'data:image/jpeg;base64,' + image.data
+        : null,
+      };
+      this.props.postTeam(data);
+    } else {
+      Alert.alert(
+        'Aviso!',
+        'Rellena los campos vacios',
+        );
+    }
   };
 
   _onImageTapped = () => {
@@ -48,14 +57,15 @@ class TeamsAdd extends React.Component {
     });
   };
 
+
   render() {
     const {image, name, year, stadium} = this.state;
     return (
       <SafeAreaView style={styles.container}>
           <ImageBackground 
-                        source={require('../../../assets/images/portadaLiga.jpg')}
-                        style={{width: '100%', heigth: '100%', flex: 1}}
-                        opacity = {0.4}>
+              source={require('../../../assets/images/portadaLiga.jpg')}
+              style={{width: '100%', heigth: '100%', flex: 1}}
+              opacity = {0.4}>
             <TouchableOpacity onPress={this._onImageTapped} style={styles.imageContainer}>
               <ImageBackground
                 style= {styles.image}
@@ -81,7 +91,7 @@ class TeamsAdd extends React.Component {
                 style={styles.inputText}
                 onChangeText={(year) => {this.setState({year})}}
                 value={this.state.year}
-              />   
+              />  
               <Text style={styles.imageLabel}>
                 Nombre estadio
               </Text>
