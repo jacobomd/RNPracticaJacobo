@@ -25,6 +25,17 @@ class ListEquipos extends React.Component {
         return <TeamCard team={item} onPress={this._onTeamTapped}/>
     };
 
+    _renderSeparatorView = () => {
+        return (
+          <View style={{
+              height: 2, 
+              width: "100%",
+              backgroundColor: "black",
+            }}
+          />
+        );
+      };
+
     render () {
         const {teamsList, teamsTotal, teamsIsFetching, fetchTeamsList} = this.props;
         return (
@@ -35,6 +46,7 @@ class ListEquipos extends React.Component {
                         opacity = {0.7}>
                         
                     <FlatList
+                    ItemSeparatorComponent= {this._renderSeparatorView}
                         refreshControl={
                         <RefreshControl
                             refreshing={teamsIsFetching}
@@ -47,7 +59,6 @@ class ListEquipos extends React.Component {
                     renderItem={this._renderItem}
                     keyExtractor={(item, index) => index.toString()}
                     //keyExtractor={(v, i) => `cell-${v.id}`} 
-                    numColumns={2}
                     />
                     <View style={styles.container}>
                         <TouchableHighlight style={styles.addButton}

@@ -55,7 +55,7 @@ class TeamsAdd extends React.Component {
           <ImageBackground 
                         source={require('../../../assets/images/portadaLiga.jpg')}
                         style={{width: '100%', heigth: '100%', flex: 1}}
-                        opacity = {0.5}>
+                        opacity = {0.4}>
             <TouchableOpacity onPress={this._onImageTapped} style={styles.imageContainer}>
               <ImageBackground
                 style= {styles.image}
